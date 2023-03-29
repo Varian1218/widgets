@@ -15,7 +15,7 @@ namespace Widgets
 
         public IWidget Parent
         {
-            set => transform.SetParent(value.GetComponent<Transform>());
+            set => transform.SetParent(value.GetComponent<Transform>(), false);
         }
 
         public bool Visible
