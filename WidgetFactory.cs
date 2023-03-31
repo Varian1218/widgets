@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Widgets
 {
@@ -19,7 +21,8 @@ namespace Widgets
 
         public T CreateWidget<T>(string widgetName) where T : class
         {
-            return Object.Instantiate(_widgets[widgetName]) as T;
+            var widget = _widgets[widgetName];
+            return Object.Instantiate(widget) as T ?? throw new NullReferenceException(widget.GetType().Name);
         }
 
         public void DestroyWidget(IWidget widget)
