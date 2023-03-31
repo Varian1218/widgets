@@ -21,5 +21,10 @@ namespace Widgets
         {
             _impl.DestroyWidget(widget);
         }
+
+        public void DestroyWidget(UnityWidget widget)
+        {
+            _impl.DestroyWidget(widget);
+        }
     }
 }
