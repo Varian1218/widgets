@@ -27,7 +27,7 @@ namespace Widgets
 
         public void DestroyWidget(IWidget widget)
         {
-            Object.Destroy(widget.GetComponent<MonoBehaviour>().gameObject);
+            widget.Destroy();
         }
     }
 }

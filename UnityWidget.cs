@@ -5,8 +5,8 @@ namespace Widgets
 {
     public class UnityWidget : MonoBehaviour, IWidget
     {
-        public event Action<IWidget, bool> VisibleChanged;
         public int ChildCount => transform.childCount;
+        public event Action Hidden;
 
         public int Index
         {
@@ -18,13 +18,26 @@ namespace Widgets
             set => transform.SetParent(value.GetComponent<Transform>(), false);
         }
 
+        public event Action Showed;
+
         public bool Visible
         {
-            set
-            {
-                gameObject.SetActive(value);
-                VisibleChanged?.Invoke(this, value);
-            }
+            set => gameObject.SetActive(value);
+        }
+
+        public void Destroy()
+        {
+            Destroy(gameObject);
+        }
+
+        private void OnDisable()
+        {
+            Hidden?.Invoke();
+        }
+
+        private void OnEnable()
+        {
+            Showed?.Invoke();
         }
     }
 }
