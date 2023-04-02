@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Widgets
 {
@@ -8,5 +9,6 @@ namespace Widgets
         [SerializeField] private UnityWidgets[] widgets;
 
         public IWidgets this[int index] => widgets[index];
+        public IWidgets this[Index index] => widgets[index];
     }
 }
