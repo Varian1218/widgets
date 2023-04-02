@@ -5,7 +5,6 @@ namespace Widgets
 {
     public class UnityWidget : MonoBehaviour, IWidget
     {
-        public int ChildCount => transform.childCount;
         public event Action Hidden;
 
         public int Index
@@ -13,10 +12,7 @@ namespace Widgets
             set => transform.SetSiblingIndex(value);
         }
 
-        public IWidget Parent
-        {
-            set => transform.SetParent(value.GetComponent<Transform>(), false);
-        }
+        public int InstanceId => gameObject.GetInstanceID();
 
         public event Action Showed;
 
