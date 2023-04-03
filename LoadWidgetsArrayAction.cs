@@ -1,18 +1,19 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Widgets
 {
     public class LoadWidgetsArrayAction : MonoBehaviour
     {
-        [SerializeField] private UnityWidgets[] widgets;
-        [SerializeField] private ScriptableObjectWidgetsArray widgetsArray;
+        [SerializeField] private UnityCanvas[] widgets;
+        [FormerlySerializedAs("widgetsArray")] [SerializeField] private ScriptableObjectCanvasArray canvasArray;
 
         public void Invoke()
         {
-            widgetsArray.Impl = new WidgetsArray
+            canvasArray.Impl = new CanvasArray
             {
-                Widgets = widgets.Select(it => it as IWidgets).ToArray()
+                Widgets = widgets.Select(it => it as ICanvas).ToArray()
             };
             foreach (var it in widgets)
             {

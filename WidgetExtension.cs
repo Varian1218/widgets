@@ -2,14 +2,14 @@
 {
     public static class WidgetExtension
     {
-        public static void Add(this IWidgets widgets, IWidget widget)
+        public static void Add(this ICanvas canvas, IWidget widget)
         {
-            widgets.Add(widget, widget.InstanceId);
+            canvas.Add(widget, widget.InstanceId);
         }
 
-        public static void Remove(this IWidgets widgets, IWidget widget)
+        public static void Remove(this ICanvas canvas, IWidget widget)
         {
-            widgets.Remove(widget.InstanceId);
+            canvas.Remove(widget.InstanceId);
         }
     }
 }

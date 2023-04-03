@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Widgets
 {
-    public class UnityWidgets : MonoBehaviour, IWidgets
+    public class UnityCanvas : MonoBehaviour, ICanvas
     {
         private readonly Dictionary<int, IWidget> _widgets = new();
 

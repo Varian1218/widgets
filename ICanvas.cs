@@ -2,7 +2,7 @@
 
 namespace Widgets
 {
-    public interface IWidgets : IEnumerable<IWidget>
+    public interface ICanvas : IEnumerable<IWidget>
     {
         void Add(IWidget widget, int widgetHashCode);
         void Clear();
