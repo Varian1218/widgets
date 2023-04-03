@@ -6,5 +6,10 @@
         {
             widgets.Add(widget, widget.InstanceId);
         }
+
+        public static void Remove(this IWidgets widgets, IWidget widget)
+        {
+            widgets.Remove(widget.InstanceId);
+        }
     }
 }

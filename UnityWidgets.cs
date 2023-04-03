@@ -10,8 +10,8 @@ namespace Widgets
 
         public void Add(IWidget widget, int widgetHashCode)
         {
-            _widgets.Add(widgetHashCode, widget);
             widget.GetComponent<Transform>().SetParent(transform, false);
+            _widgets.Add(widgetHashCode, widget);
         }
 
         public void Clear()
@@ -22,6 +22,7 @@ namespace Widgets
         public IWidget Remove(int hashCode)
         {
             var widget = _widgets[hashCode];
+            widget.GetComponent<Transform>().SetParent(null);
             _widgets.Remove(hashCode);
             return widget;
         }
