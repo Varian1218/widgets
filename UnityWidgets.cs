@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Widgets
@@ -13,6 +14,11 @@ namespace Widgets
             widget.GetComponent<Transform>().SetParent(transform, false);
         }
 
+        public void Clear()
+        {
+            _widgets.Clear();
+        }
+
         public IWidget Remove(int hashCode)
         {
             var widget = _widgets[hashCode];
@@ -20,16 +26,14 @@ namespace Widgets
             return widget;
         }
 
-        public int RemoveAll(ref IWidget[] widgets)
+        public IEnumerator<IWidget> GetEnumerator()
         {
-            var i = 0;
-            foreach (var widget in _widgets.Values)
-            {
-                widgets[i] = widget;
-                i++;
-            }
-            _widgets.Clear();
-            return i;
+            return _widgets.Values.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
