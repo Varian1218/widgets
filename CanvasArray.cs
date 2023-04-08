@@ -4,14 +4,14 @@ namespace Widgets
 {
     public class CanvasArray : ICanvasArray
     {
-        private ICanvas[] _widgets;
+        private ICanvas[] _impl;
 
-        public ICanvas[] Widgets
+        public ICanvas[] Impl
         {
-            set => _widgets = value;
+            set => _impl = value;
         }
 
-        public ICanvas this[int index] => _widgets[index];
-        public ICanvas this[Index index] => _widgets[index];
+        public ICanvas this[int index] => _impl[index];
+        public ICanvas this[Index index] => _impl[index];
     }
 }

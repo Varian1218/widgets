@@ -6,7 +6,13 @@ namespace Widgets
 {
     public class UnityCanvas : MonoBehaviour, ICanvas
     {
+        [SerializeField] private Canvas canvas;
         private readonly Dictionary<int, IWidget> _widgets = new();
+
+        public int Order
+        {
+            set => canvas.sortingOrder = value;
+        }
 
         public void Add(IWidget widget, int widgetHashCode)
         {
