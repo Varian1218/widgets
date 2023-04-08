@@ -2,7 +2,7 @@
 {
     public static class WidgetUtils
     {
-        public static T CreateWidget<T>(this IWidgetFactory factory) where T : class, ICustomWidget
+        public static T CreateWidget<T>(this IWidgetFactory factory) where T : class
         {
             return factory.CreateWidget<T>(GetHash<T>());
         }
