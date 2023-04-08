@@ -1,3 +1,16 @@
 {
-	"name": "Widgets"
+    "name": "Widgets",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2a0bc8a019b72014e8984aa6f673648d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
