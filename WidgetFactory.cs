@@ -19,7 +19,7 @@ namespace Widgets
             _widgets.Add(widgetName, widget);
         }
 
-        public T CreateWidget<T>(string widgetName) where T : class
+        public T CreateWidget<T>(string widgetName) where T : class, ICustomWidget
         {
             var widget = _widgets[widgetName];
             return Object.Instantiate(widget) as T ?? throw new NullReferenceException(widget.GetType().Name);

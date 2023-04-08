@@ -12,7 +12,7 @@ namespace Widgets
             set => _impl = value;
         }
 
-        public T CreateWidget<T>(string widgetName) where T : class
+        public T CreateWidget<T>(string widgetName) where T : class, ICustomWidget
         {
             return _impl.CreateWidget<T>(widgetName);
         }

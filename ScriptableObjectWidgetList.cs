@@ -19,6 +19,11 @@ namespace Widgets
             _impl.Add(widget, widgetHashCode);
         }
 
+        public void Clear()
+        {
+            _impl.Clear();
+        }
+
         public void Remove(UnityWidget widget)
         {
             Remove(widget.InstanceId);

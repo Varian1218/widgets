@@ -2,7 +2,7 @@
 {
     public interface IWidgetFactory
     {
-        T CreateWidget<T>(string widgetName) where T : class;
+        T CreateWidget<T>(string widgetName) where T : class, ICustomWidget;
         void DestroyWidget(IWidget widget);
     }
 }

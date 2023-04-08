@@ -20,6 +20,7 @@ namespace Widgets
             {
                 Impl = new WidgetList(),
                 PreAdd = widget => widget.Parent = transform,
+                PreClear = widgetFactory.DestroyWidgets,
                 PreRemove = widgetFactory.DestroyWidget
             };
         }

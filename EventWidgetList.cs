@@ -8,6 +8,7 @@ namespace Widgets
     {
         private IWidgetList _impl;
         private Action<IWidget> _preAdd;
+        private Action<IWidgetList> _preClear;
         private Action<IWidget> _preRemove;
 
         public IWidgetList Impl
@@ -20,6 +21,11 @@ namespace Widgets
             set => _preAdd = value;
         }
 
+        public Action<IWidgetList> PreClear
+        {
+            set => _preClear = value;
+        }
+
         public Action<IWidget> PreRemove
         {
             set => _preRemove = value;
@@ -27,8 +33,14 @@ namespace Widgets
 
         public void Add(IWidget widget, int widgetHashCode)
         {
-            _preRemove(widget);
+            _preAdd(widget);
             _impl.Add(widget, widgetHashCode);
+        }
+
+        public void Clear()
+        {
+            _preClear(this);
+            _impl.Clear();
         }
 
         public IEnumerator<IWidget> GetEnumerator()
