@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 328e677aed5e4e588a455f8152a8817a, type: 3}
-  m_Name: Load Widget List Action
+  m_Name: Load Event Widget List Action
   m_EditorClassIdentifier: 
-  widgetList: {fileID: 0}
+  transform: {fileID: 0}
+  widgetFactory: {fileID: 0}
+  widgetList: {fileID: 11400000, guid: 535f1e344212a3245be0f48265d67353, type: 2}

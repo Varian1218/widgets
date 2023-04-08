@@ -1,4 +1,5 @@
 using System;
+using Transforms;
 using UnityEngine;
 
 namespace Widgets
@@ -13,6 +14,11 @@ namespace Widgets
         }
 
         public int InstanceId => gameObject.GetInstanceID();
+
+        public ITransform Parent
+        {
+            set => transform.SetParent(value.GetComponent<Transform>(), false);
+        }
 
         public event Action Showed;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Transforms;
 
 namespace Widgets
 {
@@ -7,6 +8,7 @@ namespace Widgets
         event Action Hidden;
         int Index { set; }
         int InstanceId { get; }
+        ITransform Parent { set; }
         event Action Showed;
         bool Visible { set; }
         void Destroy();

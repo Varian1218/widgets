@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Widgets
 {
@@ -25,6 +27,18 @@ namespace Widgets
         public void Remove(int hashCode)
         {
             _impl.Remove(hashCode);
+        }
+
+        public IWidget this[int hashCode] => _impl[hashCode];
+
+        public IEnumerator<IWidget> GetEnumerator()
+        {
+            return _impl.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)_impl).GetEnumerator();
         }
     }
 }

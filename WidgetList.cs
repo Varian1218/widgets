@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace Widgets
 {
@@ -10,9 +11,21 @@ namespace Widgets
             _widgets.Add(widgetHashCode, widget);
         }
 
+        public IEnumerator<IWidget> GetEnumerator()
+        {
+            return _widgets.Values.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
         public void Remove(int hashCode)
         {
             _widgets.Remove(hashCode);
         }
+
+        public IWidget this[int hashCode] => _widgets[hashCode];
     }
 }
