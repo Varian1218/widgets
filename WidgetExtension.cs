@@ -16,5 +16,10 @@ namespace Widgets
                 factory.DestroyWidget(widget);
             }
         }
+        
+        public static void Remove(this IWidgetList list, IWidget widget)
+        {
+            list.Remove(widget.InstanceId);
+        }
     }
 }
