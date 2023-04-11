@@ -8,18 +8,18 @@ using Object = UnityEngine.Object;
 namespace Widgets
 {
     [CreateAssetMenu(menuName = "Widgets/Widget Database", fileName = "Widget Database", order = 1)]
-    public class WidgetDatabase : ScriptableObject, IEnumerable<(string, UnityWidget)>
+    public class WidgetDatabase : ScriptableObject, IEnumerable<(string, MonoBehaviour)>
     {
-        [SerializeField] private UnityWidget[] widgets;
+        [SerializeField] private MonoBehaviour[] widgets;
         public int Length => widgets?.Length ?? 0;
 
-        public IEnumerable<UnityWidget> Values
+        public IEnumerable<MonoBehaviour> Values
         {
-            get => widgets ?? Array.Empty<UnityWidget>();
+            get => widgets ?? Array.Empty<MonoBehaviour>();
             set => widgets = value.ToArray();
         }
 
-        public IEnumerator<(string, UnityWidget)> GetEnumerator()
+        public IEnumerator<(string, MonoBehaviour)> GetEnumerator()
         {
             return widgets.Select(it => (GetHash(it), it)).GetEnumerator();
         }
@@ -32,11 +32,6 @@ namespace Widgets
         private static string GetHash(Object behaviour)
         {
             return $"I{behaviour.name}";
-        }
-
-        public HashSet<UnityWidget> ToHashSet()
-        {
-            return widgets == null ? new HashSet<UnityWidget>() : widgets.ToHashSet();
         }
     }
 }
