@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
@@ -40,13 +41,29 @@ namespace Widgets.Editors
                         monoWidget,
                         typeof(MonoBehaviour),
                         false
-                    );
+                    ) as MonoBehaviour;
                     EditorGUILayout.EndHorizontal();
                     if (objectWidget)
                     {
                         if (!monoWidget)
                         {
-                            map.Add(instanceId, widget);
+                            map.Add(instanceId, objectWidget);
+                        }
+
+                        var binding = BindingFlags.Instance | BindingFlags.NonPublic;
+                        var widgetField = objectWidget.GetType().GetField("widget", binding);
+                        if (widgetField == null)
+                        {
+                            EditorGUILayout.HelpBox("Missing widget field", MessageType.Warning);
+                        }
+                        else
+                        {
+                            if (widgetField.GetValue(objectWidget) as UnityWidget != widget)
+                            {
+                                widgetField.SetValue(objectWidget, widget);
+                                EditorUtility.SetDirty(objectWidget);
+                                AssetDatabase.SaveAssetIfDirty(objectWidget);
+                            }
                         }
                     }
                     else
