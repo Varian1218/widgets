@@ -30,7 +30,7 @@ namespace Widgets.Editors
                 var widget = target as UnityWidget;
                 foreach (var database in _widgetDatabases)
                 {
-                    var hashSet = database.Values == null ? new HashSet<MonoBehaviour>() : database.Values.ToHashSet();
+                    var hashSet = database.Values.ToHashSet();
                     var value = hashSet.Contains(widget);
                     var toggle = EditorGUILayout.Toggle(database.name, value);
                     if (toggle)
