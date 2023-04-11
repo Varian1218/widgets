@@ -10,6 +10,12 @@ namespace Widgets
     {
         [SerializeField] private MonoBehaviour[] widgets;
 
+        public IEnumerable<MonoBehaviour> Values
+        {
+            get => widgets;
+            set => widgets = value.ToArray();
+        }
+
         public IEnumerator<(string, MonoBehaviour)> GetEnumerator()
         {
             return widgets.Select(it => (GetHash(it), it)).GetEnumerator();
