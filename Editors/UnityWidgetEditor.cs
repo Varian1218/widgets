@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -27,29 +28,37 @@ namespace Widgets.Editors
             }
             else
             {
-                var widget = target as UnityWidget;
+                var widget = target as UnityWidget ?? throw new NullReferenceException();
                 foreach (var database in _widgetDatabases)
                 {
-                    var hashSet = database.Values.ToHashSet();
-                    var value = hashSet.Contains(widget);
-                    var toggle = EditorGUILayout.Toggle(database.name, value);
-                    if (toggle)
+                    var instanceId = widget.gameObject.GetInstanceID();
+                    var map = database.Values.ToDictionary(it => it.gameObject.GetInstanceID());
+                    map.TryGetValue(instanceId, out var monoWidget);
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField(database.name);
+                    var objectWidget = EditorGUILayout.ObjectField(
+                        monoWidget,
+                        typeof(MonoBehaviour),
+                        false
+                    );
+                    EditorGUILayout.EndHorizontal();
+                    if (objectWidget)
                     {
-                        if (!value)
+                        if (!monoWidget)
                         {
-                            hashSet.Add(widget);
+                            map.Add(instanceId, widget);
                         }
                     }
                     else
                     {
-                        if (value)
+                        if (monoWidget)
                         {
-                            hashSet.Remove(widget);
+                            map.Remove(instanceId);
                         }
                     }
 
-                    if (toggle == value) continue;
-                    database.Values = hashSet.OrderBy(it => it.name);
+                    if (objectWidget == monoWidget) continue;
+                    database.Values = map.Values.OrderBy(it => it.name);
                     EditorUtility.SetDirty(database);
                     AssetDatabase.SaveAssetIfDirty(database);
                 }
