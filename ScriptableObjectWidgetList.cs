@@ -24,7 +24,7 @@ namespace Widgets
             _impl.Clear();
         }
 
-        public void Remove(UnityWidget widget)
+        public void Remove(MonoBehaviourWidget widget)
         {
             Remove(widget.InstanceId);
         }

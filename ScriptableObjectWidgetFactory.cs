@@ -22,7 +22,7 @@ namespace Widgets
             _impl.DestroyWidget(widget);
         }
 
-        public void DestroyWidget(UnityWidget widget)
+        public void DestroyWidget(MonoBehaviourWidget widget)
         {
             _impl.DestroyWidget(widget);
         }
