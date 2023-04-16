@@ -25,7 +25,7 @@ namespace Widgets.Editors
             base.OnInspectorGUI();
             if (_widgetDatabases == null || _widgetDatabases.Length == 0)
             {
-                EditorGUILayout.HelpBox("You must be create widget list", MessageType.Warning);
+                EditorGUILayout.HelpBox("You must be create widget database", MessageType.Warning);
             }
             else
             {
@@ -39,11 +39,12 @@ namespace Widgets.Editors
                         var map = database.Values.ToDictionary(it => it.gameObject.GetInstanceID());
                         map.TryGetValue(instanceId, out var monoWidget);
                         EditorGUILayout.BeginHorizontal();
-                        EditorGUILayout.LabelField(database.name);
+                        // EditorGUILayout.LabelField(database.name);
+                        EditorGUILayout.ObjectField(database, database.GetType(), false);
                         var objectWidget = EditorGUILayout.ObjectField(
                             monoWidget,
                             typeof(MonoBehaviour),
-                            false
+                            true
                         ) as MonoBehaviour;
                         EditorGUILayout.EndHorizontal();
                         if (objectWidget)
