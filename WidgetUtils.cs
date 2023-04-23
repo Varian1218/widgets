@@ -6,6 +6,11 @@
         {
             return factory.CreateWidget<T>(GetHash<T>());
         }
+        
+        public static T CreateWidget<T>(this IExtensionWidgetFactory factory) where T : class, IWidgetExtension
+        {
+            return factory.CreateWidget<T>(GetHash<T>());
+        }
 
         public static string GetHash<T>()
         {
