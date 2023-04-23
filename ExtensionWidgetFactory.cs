@@ -7,6 +7,16 @@ namespace Widgets
         private Action<IWidget> _addChild;
         private IWidgetFactory _impl;
 
+        public Action<IWidget> AddChild
+        {
+            set => _addChild = value;
+        }
+
+        public IWidgetFactory Impl
+        {
+            set => _impl = value;
+        }
+
         public T CreateWidget<T>(string widgetName) where T : class, IWidgetExtension
         {
             var widget = _impl.CreateWidget<T>(widgetName);
