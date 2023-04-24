@@ -16,7 +16,7 @@ namespace Widgets.TaskWidgets
             Showed = new AwaiterTask(_showedAwaiter);
         }
 
-        public IWidgetEvents Widget
+        public IWidgetEvents Events
         {
             set
             {
