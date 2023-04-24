@@ -7,8 +7,8 @@ namespace Widgets.TaskWidgets
     {
         private readonly Awaiter _hiddenAwaiter = new();
         private readonly Awaiter _showedAwaiter = new();
-        private ITask Hidden { get; }
-        private ITask Showed { get; }
+        public ITask Hidden { get; }
+        public ITask Showed { get; }
 
         public TaskWidget()
         {
