@@ -1,12 +1,33 @@
 using System;
 using Transforms;
 using UnityEngine;
+using Widgets.WidgetEvents;
 
 namespace Widgets
 {
     public class MonoBehaviourWidget : MonoBehaviour, IWidget
     {
-        public event Action Hidden;
+        private class WidgetEvents : IWidgetEvents
+        {
+            public Action Hidden;
+            public Action Showed;
+
+            event Action IWidgetEvents.Hidden
+            {
+                add => Hidden += value;
+                remove => Hidden -= value;
+            }
+
+            event Action IWidgetEvents.Showed
+            {
+                add => Showed += value;
+                remove => Showed -= value;
+            }
+        }
+
+        private readonly WidgetEvents _events = new();
+
+        public IWidgetEvents Events => _events;
 
         public int Index
         {
@@ -20,8 +41,6 @@ namespace Widgets
             set => transform.SetParent(value.GetComponent<Transform>(), false);
         }
 
-        public event Action Showed;
-
         public bool Visible
         {
             set => gameObject.SetActive(value);
@@ -34,12 +53,12 @@ namespace Widgets
 
         private void OnDisable()
         {
-            Hidden?.Invoke();
+            _events.Hidden?.Invoke();
         }
 
         private void OnEnable()
         {
-            Showed?.Invoke();
+            _events.Showed?.Invoke();
         }
     }
 }
